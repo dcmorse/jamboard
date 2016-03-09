@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace jamboard.Models
 {
@@ -16,6 +18,8 @@ namespace jamboard.Models
         // and other leagues might still want to include characters. 
         // Plus, who does math on skater numbers anyway?
         [Required]
+        [StringLength(10)]
+        [Column(TypeName="varchar")]
         [RegularExpression(@"[0-9A-Z]{2,3}", ErrorMessage = "Number must be 2-3 digits or upper-case characters")]
         public string Number { get; set; }
     }

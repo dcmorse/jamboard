@@ -29,5 +29,7 @@ namespace jamboard.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<jamboard.Models.Skater> Skaters { get; set; }
     }
 }
