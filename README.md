@@ -1,3 +1,3 @@
 # jamboard
 ## roller derby penalty tracking 
-class project for <code Louisville>
+class project for &lt;code Louisville&gt;
