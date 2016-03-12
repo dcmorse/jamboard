@@ -23,6 +23,7 @@ namespace jamboard.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
@@ -30,6 +31,8 @@ namespace jamboard.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<jamboard.Models.Skater> Skaters { get; set; }
+        public DbSet<Skater> Skaters { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Jam> Jams { get; set; }
     }
 }

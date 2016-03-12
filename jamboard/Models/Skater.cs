@@ -22,5 +22,10 @@ namespace jamboard.Models
         [Column(TypeName="varchar")]
         [RegularExpression(@"[0-9A-Z]{2,3}", ErrorMessage = "Number must be 2-3 digits or upper-case characters")]
         public string Number { get; set; }
+        // [Required]
+        // [Key]
+        // [ForeignKey("Team")]
+        public int TeamId { get; set; }
+        public Team Team { get; set; }
     }
 }
