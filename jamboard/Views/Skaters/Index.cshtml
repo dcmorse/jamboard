@@ -33,9 +33,6 @@
         </td>
         <td>
             @((null != item.Team) ? item.Team.ShortName : "Null")
-            ,
-
-            @item.TeamId
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

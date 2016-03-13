@@ -34,7 +34,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TeamId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TeamId, new { htmlAttributes = new { @class = "form-control" } })
+                <select asp-for="TeamId" class="form-control" data-val="true" data-val-required="The Team field is required." id="TeamId" name="TeamId">
+                    @foreach (var team in (new jamboard.Models.ApplicationDbContext().Teams))
+                    {
+                        <option value="@team.Id.ToString()">@team.Name</option>
+                    }
+                </select>
+
                 @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
 
             </div>
