@@ -17,16 +17,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Number)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team.ShortName)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @item.Name
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Number)
+        </td>
+        <td>
+            @((null != item.Team) ? item.Team.ShortName : "Null")
+            ,
+
+            @item.TeamId
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
