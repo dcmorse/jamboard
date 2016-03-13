@@ -22,13 +22,6 @@ namespace jamboard.Models
         //[Key]
         //[ForeignKey("Skater")]
         //public virtual List<int> SkaterID { get; set; }
-        public IList<Skater> Skaters { get; set; }
-
-        public static DbSet<Team> Teams()
-        {
-            var db = new ApplicationDbContext();
-            return db.Teams;
-        }
-
+        public virtual IList<Skater> Skaters { get; set; }
     }
 }

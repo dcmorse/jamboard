@@ -29,6 +29,9 @@
             @Html.DisplayFor(modelItem => item.ShortName)
         </td>
         <td>
+            @item.Skaters.Count.ToString()
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })

@@ -27,6 +27,13 @@
         </dd>
 
     </dl>
+    <h5>Members</h5>
+    <ul>
+    @foreach (var sk8r in Model.Skaters)
+    {
+        <li>@sk8r.Number @sk8r.Name</li>
+    }
+    </ul>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
