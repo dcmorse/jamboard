@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Data.Entity;
 
 namespace jamboard.Models
 {
@@ -23,5 +23,12 @@ namespace jamboard.Models
         //[ForeignKey("Skater")]
         //public virtual List<int> SkaterID { get; set; }
         public IList<Skater> Skaters { get; set; }
+
+        public static DbSet<Team> Teams()
+        {
+            var db = new ApplicationDbContext();
+            return db.Teams;
+        }
+
     }
 }
