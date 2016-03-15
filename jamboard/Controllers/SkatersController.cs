@@ -46,7 +46,7 @@ namespace jamboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Number,TeamId")] Skater skater)
+        public ActionResult Create([Bind(Include = "Name,Number,TeamId")] Skater skater)
         {
             if (ModelState.IsValid)
             {
