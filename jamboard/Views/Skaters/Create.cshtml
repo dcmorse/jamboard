@@ -35,7 +35,7 @@
             @Html.LabelFor(model => model.TeamId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 
-                @Html.DropDownListFor(model => model.TeamId, (IEnumerable<SelectListItem>)ViewData["Teams"], new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.TeamId, new SelectList((IEnumerable<jamboard.Models.Team>)ViewData["Teams"], "Id", "Name"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
             </div>
 
