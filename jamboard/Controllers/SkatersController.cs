@@ -35,9 +35,14 @@ namespace jamboard.Controllers
             return View(skater);
         }
 
+        private void SetTeamViewData()
+        {
+            ViewData["Teams"] = (IEnumerable<SelectListItem>)new SelectList(db.Teams, "Id", "Name");
+        }
         // GET: Skaters/Create
         public ActionResult Create()
         {
+            SetTeamViewData();
             return View();
         }
 
@@ -70,6 +75,7 @@ namespace jamboard.Controllers
             {
                 return HttpNotFound();
             }
+            SetTeamViewData();
             return View(skater);
         }
 
