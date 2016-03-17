@@ -9,6 +9,11 @@ namespace jamboard.Models
 {
     public class Skater
     {
+        public Skater()
+        {
+            IsSkating = false;
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -22,6 +27,9 @@ namespace jamboard.Models
         [Column(TypeName="varchar")]
         [RegularExpression(@"[0-9A-Z]{2,3}", ErrorMessage = "Number must be 2-3 digits or upper-case characters")]
         public string Number { get; set; }
+
+        public bool IsSkating { get; set; }
+
         // [Required]
         // [Key]
         // [ForeignKey("Team")]
