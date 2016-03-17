@@ -26,5 +26,9 @@ namespace jamboard.Controllers
 
             return View();
         }
+        public ActionResult Chat() // added for signalR tutorial
+        {
+            return View();
+        }
     }
 }
