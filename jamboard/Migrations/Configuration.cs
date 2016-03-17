@@ -22,7 +22,7 @@ namespace jamboard.Migrations
             //  This method will be called after migrating to the latest version.
             db.Teams.AddOrUpdate(t => t.Id,
                 new Team { Id = IdDCRG, Name = "Derby City Rollergirls", ShortName = "DCRG" },
-                new Team { Id = IdGGB, Name = "Garnet Grit Betties", ShortName = "GGB" });
+                new Team { Id = IdGGB,  Name = "Garnet Grit Betties",    ShortName = "GGB" });
 
             db.Skaters.AddOrUpdate(s => s.Id,
                 new Skater { Name = "Nancy", Number = "88", TeamId = IdDCRG });

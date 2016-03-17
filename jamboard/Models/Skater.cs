@@ -35,5 +35,8 @@ namespace jamboard.Models
         // [ForeignKey("Team")]
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
+
+        // many to many
+        public virtual IList<Jam> Jams { get; set; }
     }
 }

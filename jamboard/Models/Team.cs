@@ -23,5 +23,6 @@ namespace jamboard.Models
         //[ForeignKey("Skater")]
         //public virtual List<int> SkaterID { get; set; }
         public virtual IList<Skater> Skaters { get; set; }
+        public virtual IList<Jam> Jams { get; set; }
     }
 }
