@@ -89,32 +89,6 @@ namespace jamboard.Controllers
             return View(team);
         }
 
-        // GET: Teams/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Team team = db.Teams.Find(id);
-            if (team == null)
-            {
-                return HttpNotFound();
-            }
-            return View(team);
-        }
-
-        // POST: Teams/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Team team = db.Teams.Find(id);
-            db.Teams.Remove(team);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

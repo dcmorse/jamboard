@@ -25,7 +25,7 @@ namespace jamboard.Models
         [Required]
         [StringLength(10)]
         [Column(TypeName="varchar")]
-        [RegularExpression(@"[0-9A-Z]{2,3}", ErrorMessage = "Number must be 2-3 digits or upper-case characters")]
+        [RegularExpression(@"[0-9A-Z]{1,3}", ErrorMessage = "Number must be 1-3 digits or upper-case characters")]
         public string Number { get; set; }
 
         public bool IsSkating { get; set; }

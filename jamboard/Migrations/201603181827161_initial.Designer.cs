@@ -7,13 +7,13 @@ namespace jamboard.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddTeamToSkater : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTeamToSkater));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603120147076_AddTeamToSkater"; }
+            get { return "201603181827161_initial"; }
         }
         
         string IMigrationMetadata.Source
