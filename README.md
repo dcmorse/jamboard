@@ -24,20 +24,24 @@ Prior to every jam, an official for each team records that team's fielded skater
 
 There are **Teams, Skaters, Jams** and **SkaterJam** tables. All but the last have corresponding Models, Views, and Controllers.  
 
-Building the data model from C# using Code First and Entity Framework 6 consisted of the bulk of my time spent on this project. THe rest of this section details the relationships betweeen these models. 
+Building the data model from C# using Code First and Entity Framework 6 consisted of the bulk of my time spent on this project. The rest of this section details the relationships betweeen these models. 
 
 #### Many-to-One Relationships
 
 Teams have many skaters. Skaters belong to exactly one team. 
 
-<img src="screenshots/Teams-Index.PNG" alt="" />
-<img src="screenshots/Skaters-Edit.PNG" alt="" />
-<img src="screenshots/Skaters-Index.PNG" alt="" />
+###### `/Teams/Index` view:
+<img src="screenshots/Teams-Index.PNG" alt="screenshot" />
 
+###### `/Skaters/Edit` view - updating a skater record:
+<img src="screenshots/Skaters-Edit.PNG" alt="screenshot" />
+
+###### `/Skaters/Index` view - list all skaters on every team:
+<img src="screenshots/Skaters-Index.PNG" alt="screenshot" />
 
 Jams belong to exactly one team. Teams have many jams. In "the real world", a jam doesn't belong to one team or the other. But I tagged a "jam" object with a team to allow each tablet-weilding official to do simultaneous data-entry, and have some blindingly obvious way of telling each other's work apart. 
 
-<img src="screenshots/Jams-Index.PNG" alt="" />
+<img src="screenshots/Jams-Index.PNG" alt="screenshot" />
 
 These relationships were specified in C# model files, were detected by Entity Framework, and are compiled into the database schema by a 'code first migration' included in this repository. 
 
@@ -123,9 +127,15 @@ So I barely even glanced at testing.
 
 Instead I did 'Code-first` because I think that's the way the wind is blowing. 
 
-#### Fluent API
+#### Partial Views
 
-Again, I squeaked by with data annotations instead. I feel like that's the way the wind is blowing. 
+There's a lot of potential application of partials and other DRY techniques throughout rendering.
+
+For example, the traditional way to render a skater is #NUM NAME, e.g "#10,000 Jane Austentatious" but I never put that in a partial or even a lowly method.
+
+There are plenty of views with lists of skaters, both in Skaters/Index, and in a Team/Details view, or in a Jam/Details view. I never got around to using partials for this. I should have. 
+
+Another application of partials that puzzled me was the way the built-in templates didn't use them to keep the Update and Create editors in sync. Again, I didn't have time to understand why they did this, or to fix it, but I note it here. 
 
 #### JavaScript 
 
