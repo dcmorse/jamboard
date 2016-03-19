@@ -1,5 +1,5 @@
 # jamboard:
-## Realtime Roller Derby Penalty Tracking 
+## Realtime Roller Derby Line-Up Tracking 
 a class project for [&lt;Code Louisville&gt;](http://www.codelouisville.org/)
 
 ## Introducing Roller Derby
