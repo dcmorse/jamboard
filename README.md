@@ -22,13 +22,11 @@ Prior to every jam, an official for each team records that team's fielded skater
 
 ## Data Model
 
-Building the data model from C# using Code First and Entity Framework 6 consisted of the bulk of my time spent on this project. Here is the model:
+There are **Teams, Skaters, Jams** and **SkaterJam** tables. All but the last have corresponding Models, Views, and Controllers.  
 
-There are many Teams. Since games are between two teams, one might expect there to a a hard limit of 2 somewhere. But there isn't. There's just a potential sea of teams. 
+Building the data model from C# using Code First and Entity Framework 6 consisted of the bulk of my time spent on this project. THe rest of this section details the relationships betweeen these models. 
 
 #### Many-to-One Relationships
-
-There are **Teams, Skaters, and Jams** tables. 
 
 Teams have many skaters. Skaters belong to exactly one team. 
 
