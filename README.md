@@ -68,24 +68,24 @@ In the screnshot above, note the eight underlying SkateJams in the database:
 
 ###### The Cascading Delete Cycle Issue
 
-I made the decision to not support deletion of teams from the web interface. Leaving it in was causing a cascading delete cycle: Deleting a team deletes all it's skaters (reasonable), and deletes all it's jams (also reasonable). Deleting either a skater or a jam should delete any associated skaterJams (also, also reasonable). But having a skaterJam deletable from two different directions causes SQL to refuse to play ball with the whole sequence of cascading deletes.
+I made the decision to not support deletion of teams from the web interface. Leaving it in was causing a cascading delete cycle: deleting a team deletes all it's skaters (reasonable), and deletes all it's jams (also reasonable). Deleting either a skater or a jam should delete any associated skaterJams (also, also reasonable). But having a skaterJam deletable from two different directions causes SQL to refuse to play ball with the whole sequence of cascading deletes.
 
 To break the cycle, I tried to move the automatic deletions from SQL Server into the C# code's deletion method. I disabled cascading deletes for teams to jams and skaters, and did it in code. I was getting all kinds of complaints about trashing lists as I was iterating through them, null pointer exceptions, and whatnot. In the interest of time I decided to fall back to removing deletion of teams from the web interface. So Teams don't have full web CRUD. They just have 'CRU'. 
 
 ###### Jams
-SkateJams are created implicitly via the web interface for creating Jams. I barely had time to make this interface work. It uses a ugly multiple-select list box. The original plan was to have a pretty grid of buttons representing players, but I ran out of time. I also didn't have time to support update of Jams, which isn't terrible - they can be 'updated' through delete-then-create.
+SkateJams are created implicitly via the web interface for creating Jams. I barely had time to make this interface work. It uses a ugly multiple-select list box. The original plan was to have a pretty grid of buttons. I also didn't have time to support update of Jams, which isn't terrible - they can be 'updated' through delete-then-create.
 
 <img src="screenshots/Jams-Create.PNG" alt="Jams/Create screenshot (ugly)" />
 
 
 ###### Lack of Polished CRUD
-In general the views are not polished or pretty. They're proof-of-concept that the database works. Since massaging CSS is grunt work for me at this point, but learning a new MVC framework is uncertain and difficult, I prioritized the scary and hard thing. Thus stuff I'm actually good at remains undone. You can see plenty of examples of this polish in my other student project, [ContraDB](contradb.com)
+In general the views are not polished or pretty. They're proof-of-concept that the database works. Since massaging CSS is grunt work for me at this point, but learning a new MVC framework is uncertain and difficult, I prioritized the uncertain and difficult thing to ensure learning. Thus stuff I'm actually good at remains undone. You can see plenty of examples of this polish in my other student project, [ContraDB](contradb.com)
 
 ## Technical Proficiency
 
 #### ViewBags and ViewModels
 
-To send paramaters from controllers to views, I mostly used ViewBag properties with dynamic casts. This is faster but less C-sharpie. 
+To send paramaters from controllers to views, I mostly used ViewBag properties with dynamic casts. This is faster to code but is unsightly C# style. 
 
 By the end of the project I got more sophisticated and used a ViewModel, specifically the JamViewModel, which has a property going from the controller to the view (AllSkaters), and a property going from the view back to the controller (SelectedSkaterIds). I had trouble finding good documentation on ViewModels. 
 
