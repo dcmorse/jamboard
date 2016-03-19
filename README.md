@@ -24,7 +24,7 @@ Prior to every jam, an official for each team records that team's fielded skater
 
 There are **Teams, Skaters, Jams** and **SkaterJam** tables. All but the last have corresponding Models, Views, and Controllers.  
 
-_Building the data model from C# using Code First and Entity Framework 6 consisted of the bulk of my time spent on this project. The rest of this section details the relationships betweeen these models._
+**Building the data model from C# using Code First and Entity Framework 6 consisted of the bulk of my time spent on this project. The rest of this section details the relationships betweeen these models.**
 
 #### Many-to-One Relationships
 
