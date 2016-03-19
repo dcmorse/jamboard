@@ -19,7 +19,7 @@ namespace jamboard.Models
     {
         public JamViewModel()
         {
-            SelectedSkaters = new List<int>();
+            // SelectedSkaterIds = new List<int>() : Nah. Initialization is for wooses who don't want null pointer exceptions when the view fails to write this. I'd rather have the exception. 
         }
 
         [Required]
@@ -28,6 +28,6 @@ namespace jamboard.Models
 
         public virtual IList<Skater> AllSkaters { get; set; }
 
-        public List<int> SelectedSkaters { get; set; }
+        public List<int> SelectedSkaterIds { get; set; }
     }
 }
