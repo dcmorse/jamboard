@@ -53,9 +53,9 @@ namespace jamboard.Controllers
         {
             if (ModelState.IsValid) 
             {
-                System.Diagnostics.Debug.WriteLine("SelectedSkaterIds.count = " + jamvm.SelectedSkaterIds.Count.ToString());
+                // System.Diagnostics.Debug.WriteLine("SelectedSkaterIds.count = " + jamvm.SelectedSkaterIds.Count.ToString());
                 var sk8rs = db.Skaters.Where(sk8r => jamvm.SelectedSkaterIds.Contains(sk8r.Id)).ToList();
-                System.Diagnostics.Debug.WriteLine("sk8rs.count = " + sk8rs.Count.ToString());
+                // System.Diagnostics.Debug.WriteLine("sk8rs.count = " + sk8rs.Count.ToString());
                 Jam jam = new Jam { Skaters = sk8rs, TeamId = jamvm.TeamId };
                 db.Jams.Add(jam);
                 db.SaveChanges();

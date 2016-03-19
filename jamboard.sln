@@ -7,6 +7,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jamboard", "jamboard\jamboa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jamboard.Tests", "jamboard.Tests\jamboard.Tests.csproj", "{180E5722-A3F1-4232-9B40-78AAF4D6A10B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshots", "screenshots", "{91D3E76E-F97D-46DA-850A-DB88656A5644}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Pictures\jamboard-px\Home-Index.PNG = ..\..\..\..\Pictures\jamboard-px\Home-Index.PNG
+		..\..\..\..\Pictures\jamboard-px\Jams-Create.PNG = ..\..\..\..\Pictures\jamboard-px\Jams-Create.PNG
+		..\..\..\..\Pictures\jamboard-px\Jams-Index.PNG = ..\..\..\..\Pictures\jamboard-px\Jams-Index.PNG
+		..\..\..\..\Pictures\jamboard-px\SkaterJams.PNG = ..\..\..\..\Pictures\jamboard-px\SkaterJams.PNG
+		..\..\..\..\Pictures\jamboard-px\Skaters-Edit.png = ..\..\..\..\Pictures\jamboard-px\Skaters-Edit.png
+		..\..\..\..\Pictures\jamboard-px\Skaters-Index.PNG = ..\..\..\..\Pictures\jamboard-px\Skaters-Index.PNG
+		..\..\..\..\Pictures\jamboard-px\Teams-Index.PNG = ..\..\..\..\Pictures\jamboard-px\Teams-Index.PNG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
