@@ -40,7 +40,8 @@ namespace jamboard.Controllers
         public ActionResult Create()
         {
             ViewBag.TeamId = new SelectList(db.Teams, "Id", "Name");
-            return View();
+            var jamvm = new JamViewModel { AllSkaters = db.Skaters.ToList() };
+            return View(jamvm);
         }
 
         // POST: Jams/Create
@@ -48,17 +49,18 @@ namespace jamboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TeamId,Timestamp")] Jam jam)
+        public ActionResult Create([Bind(Include = "Id,TeamId,Timestamp")] JamViewModel jamvm)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
+                Jam jam = new Jam { Skaters = null, TeamId = jamvm.TeamId };
                 db.Jams.Add(jam);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TeamId = new SelectList(db.Teams, "Id", "Name", jam.TeamId);
-            return View(jam);
+            ViewBag.TeamId = new SelectList(db.Teams, "Id", "Name", jamvm.TeamId);
+            return View(jamvm);
         }
 
         // GET: Jams/Edit/5
