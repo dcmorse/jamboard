@@ -55,10 +55,72 @@ I made the decision to not support deletion of teams from the web interface. The
 To break the cycle, I tried to move the automatic deletions from SQL Server into the C# code's deletion method. I disabled cascading deletes for teams to jams and skaters, and did it in code. I was getting all kinds of complaints about trashing lists as I was iterating through them, null pointer exceptions, and whatnot. In the interest of time I decided to fall back to removing deletion of teams from the web interface. So Teams don't have full web CRUD. They just have 'CRU'. 
 
 ###### Jams
-SkateJams are created implicitly via the web interface for creating Jams. I barely had time to make this interface work. It uses a ugly multiple-select list box. The original plan was to have a pretty grid of buttons representing players, but I ran out of time. I also didn't have time to support update of Jams, which isn't terrible - they can be 'updated' through delete-then-create, but I think it's worth mentioning. 
+SkateJams are created implicitly via the web interface for creating Jams. I barely had time to make this interface work. It uses a ugly multiple-select list box. The original plan was to have a pretty grid of buttons representing players, but I ran out of time. I also didn't have time to support update of Jams, which isn't terrible - they can be 'updated' through delete-then-create.
 
 ###### Lack of Polished CRUD
-In general the views are not polished or pretty. They're proof-of-concept that the database works. Since massaging CSS is grunt work for me at this point, but learning a new MVC framework is uncertain and difficult, I prioritized the scary and hard thing. Thus stuff I'm actually good at remains undone, and stuff that was hard barely works.
+In general the views are not polished or pretty. They're proof-of-concept that the database works. Since massaging CSS is grunt work for me at this point, but learning a new MVC framework is uncertain and difficult, I prioritized the scary and hard thing. Thus stuff I'm actually good at remains undone. You can see plenty of examples of this polish in my other student project, [ContraDB](contradb.com)
 
+## Technical Proficiency
 
 #### ViewBags and ViewModels
+
+To send paramaters from controllers to views, I mostly used ViewBag properties with dynamic casts. This is faster but less C-sharpie. 
+
+By the end of the project I got more sophisticated and used a ViewModel, specifically the JamViewModel, which has a property going from the controller to the view (AllSkaters), and a property going from the view back to the controller (SelectedSkaterIds). I had trouble finding good documentation on ViewModels. 
+
+#### Lambdas and Closures
+
+I love them! E.g. jamboard/Controllers/JamsController.cs:57
+```
+    db.Skaters.Where(sk8r => jamvm.SelectedSkaterIds.Contains(sk8r.Id))
+```
+includes a lambda that creates a closure over the free variable `jamvm`. 
+
+## Features Left Unimplemented
+
+#### Penalty Logging with SignalR and AngularJS
+
+The original plan was to also track penalties, with yet another user using yet another tablet. They'd get realtime updates of the in-play skaters through `SignalR`, with a UI updated using `AngularJS`. However, the nuts and bolts of creating models with the proper relationships in ASP.NET MVC proved more time-consuming than I'd imagined, and I had to cut both from the project due to time. 
+
+I did install a SignalR hub to the project, and got it working passing simple text messages, however, it's not in any way integrated to the rest of the project. Specifically, it doesn't update the penalty tracker's menu of skaters who can be penalized. 
+
+#### Permissions
+
+Security was always intended to be 'light' for this project. Because the destination installation was a LAN server physically at the derby game, and the people with login credentials are trusted officials for a derby bout, I didn't worry too much about skaters having names like "); DROP TABLE", and I didn't worry about one user deleting another's data without their permission. 
+
+I did allow Visual Studio to install the default authentication templates, and I tested that they worked. I just didn't go around decorating methods to require logged in users. That seems straightforward, but I simply didn't have time.
+
+## Dark areas left unexercised
+
+#### Automated testing
+
+Though I believe in Test Driven Devevlopment (TDD) in general, I feel that introducing it too early is a counter productive distraction. Learning is a hard process, and at first absolutely nothing is possible. At first, requirements should be brought as low as possible, in order to make _something_ achievable. But testing frameworks introduce their own requirements, and those are necessarily higher than "No Testing Development". Therefore automated testing should come in during the second quarter of learning, and TDD maybe in the third quarter. This is the first quarter, and therefore it's _too soon_. That's my firm opinion after learning two web frameworks in the last year. 
+
+So I barely even glanced at testing. 
+
+#### 'Data-first' development
+
+Instead I did 'Code-first` because I think that's the way the wind is blowing. 
+
+#### Fluent API
+
+Again, I squeaked by with data annotations instead. I feel like that's the way the wind is blowing. 
+
+#### JavaScript 
+
+My last back end project was 33% JavaScript. This time the pendulum swung the other way, and other than some unobtrusive javascript and some unfinished scripting with SignalR, the project didn't use it at all. 
+
+#### Responsive design
+
+As mentioned above, I didn't do design work period. I mostly threw `div`s and `li`s at the bootstrap template, and crossed my fingers. 
+#### User Experience
+
+The overall workflow of the site, and it's function, was not something I had time to lay out. The priority was getting the database updating, the ORM mapping, the rows squabbling. Anyone but me entering this site is going to be lost, and even **I** would rather use a pencil and paper to track skaters than this software. 
+
+It's a proof of concept not a finished product. 
+
+## Future
+
+I've learned the jamboard approach will work to solve this problem. 
+
+I've also learned that with my current skill set and my life obligations, I won't have time to make this into a legitimately useful OSS project in 2016. This makes me sad, but I am proud to have brought the project to some form of completion. 
