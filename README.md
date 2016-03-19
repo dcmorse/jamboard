@@ -86,7 +86,7 @@ I did install a SignalR hub to the project, and got it working passing simple te
 
 #### Permissions
 
-Security was always intended to be 'light' for this project. Because the destination installation was a LAN server physically at the derby game, and the people with login credentials are trusted officials for a derby bout, I didn't worry too much about skaters having names like "); DROP TABLE", and I didn't worry about one user deleting another's data without their permission. 
+Security was always intended to be 'light' for this project. Because the destination installation was a LAN server physically at the derby game, and the people with login credentials are trusted officials for a derby bout, I didn't worry too much about skaters having names like `); DROP TABLE`, and I didn't worry about one user deleting another's data without their permission. 
 
 I did allow Visual Studio to install the default authentication templates, and I tested that they worked. I just didn't go around decorating methods to require logged in users. That seems straightforward, but I simply didn't have time.
 
@@ -112,10 +112,11 @@ My last back end project was 33% JavaScript. This time the pendulum swung the ot
 
 #### Responsive design
 
-As mentioned above, I didn't do design work period. I mostly threw `div`s and `li`s at the bootstrap template, and crossed my fingers. 
+As mentioned above, I didn't do design work period. I mostly threw `div`s and `li`s at the bootstrap template. Once or twice I added a `form-control` or `col-md-10` class. But mostly I ignored aesthetics and I certainly didn't test on anything but one browser and one screen resolution. 
+
 #### User Experience
 
-The overall workflow of the site, and it's function, was not something I had time to lay out. The priority was getting the database updating, the ORM mapping, the rows squabbling. Anyone but me entering this site is going to be lost, and even **I** would rather use a pencil and paper to track skaters than this software. 
+The overall workflow of the site, and it's function, was not something I had time to make intuitive. The priority was getting the database updating, the ORM mapping, the rows squabbling. Anyone but me entering this site is going to be lost, and even **I** would rather use a pencil and paper to track skaters than this software. 
 
 It's a proof of concept not a finished product. 
 
