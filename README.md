@@ -16,7 +16,7 @@ Jamboard is proof-of-concept for a web-and-tablet-based, multi-headed, real time
 
 ## Workflow
 
-Prior to a game, both teams submit rosters of players. Teams and players are entered into the DB by officials. Note that running the db-initalizing migration will seed the db with two teams and dozens of players. In a real game, these tables would have to be dropped before real data entry. But the idea is to make it easier for &lt;Code Louisville&gt; reviewers. 
+Prior to a game, both teams submit rosters of players. Teams and players are entered into the DB by officials. Note that running the db-initalizing migration will seed the db with two teams and dozens of players. In a real game, these tables would have to be dropped before real data entry.
 
 Prior to every jam, an official for each team records that team's fielded skaters.
 
@@ -111,6 +111,10 @@ I did allow Visual Studio to install the default authentication templates, and I
 
 ## Dark areas left unexercised
 
+#### Deployment
+
+It doesn't make sense to deploy it on the internet. It's designed to run from a LAN. 
+
 #### Automated testing
 
 Though I believe in Test Driven Devevlopment (TDD) in general, I feel that introducing it too early is a counter productive distraction. Learning is a hard process, and at first absolutely nothing is possible. At first, requirements should be brought as low as possible, in order to make _something_ achievable. But testing frameworks introduce their own requirements, and those are necessarily higher than "No Testing Development". Therefore automated testing should come in during the second quarter of learning, and TDD maybe in the third quarter. This is the first quarter, and therefore it's _too soon_. That's my firm opinion after learning two web frameworks in the last year. 
@@ -144,3 +148,7 @@ It's a proof of concept not a finished product.
 I've learned the jamboard approach will work to solve this problem. 
 
 I've also learned that with my current skill set and my life obligations, I won't have time to make this into a legitimately useful OSS project in 2016. This makes me sad, but I am proud to have brought the project to some form of completion. 
+
+## Installing Development Environment
+
+I believe the installation procedure is to check out the project through Visual Stuidio / Github, then maybe edit the cocnnection string in Web.config, create a new database named `jamboard`, then from the Tools > NuGet Package Manager > Package Manager Console execute the command `Update-Database`. You may also need to get some other dependent packages, such as Entity-Framework, SignalR, AngularJS, and so on, but hopefully those error messages should be straightforward. Once that's sorted out, click the 'build project' button and browse away. 
