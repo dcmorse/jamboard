@@ -12,6 +12,8 @@ Games are subdivided 'jams' (like 'plays' in football). Typically, each skater s
 
 Jamboard is proof-of-concept for a web-and-tablet-based, multi-headed, real time skater tracking system. Unlike most projects, it's intended to run on an intranet, with a database with less than 1000 rows total. Arguably, it should instead have been a server of _not_-http, just sitting on some port listening for tcp connections, reading configuration files and grinding out log files as output, with the UI done by a few mobile apps. That would certainly be more performant. But hey, http / html is very portable, and nobody hires people to write that kind of application anymore, and there's no class in it I need to pass, so the http / html architecture is defensible. :)
 
+<img src="screenshots/Home-Index.PNG" alt="" />
+
 ## Workflow
 
 Prior to a game, both teams submit rosters of players. Teams and players are entered into the DB by officials. Note that running the db-initalizing migration will seed the db with two teams and dozens of players. In a real game, these tables would have to be dropped before real data entry. But the idea is to make it easier for &lt;Code Louisville&gt; reviewers. 
@@ -26,24 +28,38 @@ There are many Teams. Since games are between two teams, one might expect there 
 
 #### Many-to-One Relationships
 
+There are **Teams, Skaters, and Jams** tables. 
+
 Teams have many skaters. Skaters belong to exactly one team. 
 
+<img src="screenshots/Teams-Index.PNG" alt="" />
+<img src="screenshots/Skaters-Edit.PNG" alt="" />
+<img src="screenshots/Skaters-Index.PNG" alt="" />
+
+
 Jams belong to exactly one team. Teams have many jams. In "the real world", a jam doesn't belong to one team or the other. But I tagged a "jam" object with a team to allow each tablet-weilding official to do simultaneous data-entry, and have some blindingly obvious way of telling each other's work apart. 
+
+<img src="screenshots/Jams-Index.PNG" alt="" />
 
 These relationships were specified in C# model files, were detected by Entity Framework, and are compiled into the database schema by a 'code first migration' included in this repository. 
 
 Controller and View scaffolding was generated and tweaked to allow the user to edit teams, skaters, and jams. Nearly full CRUD is supported. See 'Pictures of CRUD' below
 
-#### The Many-to-Many Relationship
+#### Many-to-Many Relationship
 
-Skaters participate in many jams. Jams have five skaters, though internally it's of course any number. This is a classic many-to-many relationship. 
+Skaters participate in many jams. Jams have five skaters, though internally it's of course any number. This is a textbook many-to-many relationship. 
 
 This relationship was specified in C# model files, was detected by Entity Framework, and is compiled into the database schema by a 'code first migration' included in this repository. This includes the SkaterJams join table. 
 
-Since SkaterJams is an implementation detail, and not a UI concept we want to put in the user's face, I didn't generate a controller or views for SkaterJams. Instead, the SkaterJam rows are manipulated implicitly through the CRUD of Jams. 
+Since SkaterJams is an implementation detail, and not a UI concept we want to put in the user's face, I didn't generate a controller or views for SkaterJams. Instead, the SkaterJam rows are manipulated implicitly through the CRUD of Jams:
+
+<img src="screenshots/Jams-Index.PNG" alt="Jams/Index screenshot" />
+
+In the screnshot above, note the eight underlying SkateJams in the database:
+
+<img src="screenshots/SkaterJams.PNG" alt="screenshot of VisualStudio internal SkaterJams representation" />
 
 
-#### Pictures of CRUD
 
 
 #### CRUD Warts
@@ -56,6 +72,9 @@ To break the cycle, I tried to move the automatic deletions from SQL Server into
 
 ###### Jams
 SkateJams are created implicitly via the web interface for creating Jams. I barely had time to make this interface work. It uses a ugly multiple-select list box. The original plan was to have a pretty grid of buttons representing players, but I ran out of time. I also didn't have time to support update of Jams, which isn't terrible - they can be 'updated' through delete-then-create.
+
+<img src="screenshots/Jams-Create.PNG" alt="Jams/Create screenshot (ugly)" />
+
 
 ###### Lack of Polished CRUD
 In general the views are not polished or pretty. They're proof-of-concept that the database works. Since massaging CSS is grunt work for me at this point, but learning a new MVC framework is uncertain and difficult, I prioritized the scary and hard thing. Thus stuff I'm actually good at remains undone. You can see plenty of examples of this polish in my other student project, [ContraDB](contradb.com)
