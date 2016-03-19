@@ -34,7 +34,7 @@ Teams have many skaters. Skaters belong to exactly one team.
 <img src="screenshots/Teams-Index.PNG" alt="screenshot" />
 
 ###### `/Skaters/Edit` view - updating a skater record:
-<img src="screenshots/Skaters-Edit.PNG" alt="screenshot" />
+<img src="screenshots/Skaters-Edit.png" alt="screenshot" />
 
 ###### `/Skaters/Index` view - list all skaters on every team:
 <img src="screenshots/Skaters-Index.PNG" alt="screenshot" />
@@ -45,13 +45,13 @@ Jams belong to exactly one team. Teams have many jams. In "the real world", a ja
 
 These relationships were specified in C# model files, were detected by Entity Framework, and are compiled into the database schema by a 'code first migration' included in this repository. 
 
-Controller and View scaffolding was generated and tweaked to allow the user to edit teams, skaters, and jams. Nearly full CRUD is supported. See 'Pictures of CRUD' below
+Controller and View scaffolding was generated and tweaked to allow the user to edit teams, skaters, and jams. Nearly full CRUD is supported. See 'CRUD Warts' below for a few exceptions.
 
 #### Many-to-Many Relationship
 
 Skaters participate in many jams. Jams have five skaters, though internally it's of course any number. This is a textbook many-to-many relationship. 
 
-This relationship was specified in C# model files, was detected by Entity Framework, and is compiled into the database schema by a 'code first migration' included in this repository. This includes the SkaterJams join table. 
+Like the Many-to-One relationships this relationship was specified in C# model files, was detected by Entity Framework, and is compiled into the database schema by a 'code first migration' included in this repository. Unlike the Many-to-One relationships, this includes the SkaterJams join table. 
 
 Since SkaterJams is an implementation detail, and not a UI concept we want to put in the user's face, I didn't generate a controller or views for SkaterJams. Instead, the SkaterJam rows are manipulated implicitly through the CRUD of Jams:
 
