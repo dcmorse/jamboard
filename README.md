@@ -24,13 +24,41 @@ Building the data model from C# using Code First and Entity Framework 6 consiste
 
 There are many Teams. Since games are between two teams, one might expect there to a a hard limit of 2 somewhere. But there isn't. There's just a potential sea of teams. 
 
-### Many-to-One Relationships
+#### Many-to-One Relationships
 
 Teams have many skaters. Skaters belong to exactly one team. 
 
 Jams belong to exactly one team. Teams have many jams. In "the real world", a jam doesn't belong to one team or the other. But I tagged a "jam" object with a team to allow each tablet-weilding official to do simultaneous data-entry, and have some blindingly obvious way of telling each other's work apart. 
 
-### The Many-to-Many Relationship
+These relationships were specified in C# model files, were detected by Entity Framework, and are compiled into the database schema by a 'code first migration' included in this repository. 
 
-Jams have five skaters. Skaters participate in many jams. 
+Controller and View scaffolding was generated and tweaked to allow the user to edit teams, skaters, and jams. Nearly full CRUD is supported. See 'Pictures of CRUD' below
 
+#### The Many-to-Many Relationship
+
+Skaters participate in many jams. Jams have five skaters, though internally it's of course any number. This is a classic many-to-many relationship. 
+
+This relationship was specified in C# model files, was detected by Entity Framework, and is compiled into the database schema by a 'code first migration' included in this repository. This includes the SkaterJams join table. 
+
+Since SkaterJams is an implementation detail, and not a UI concept we want to put in the user's face, I didn't generate a controller or views for SkaterJams. Instead, the SkaterJam rows are manipulated implicitly through the CRUD of Jams. 
+
+
+#### Pictures of CRUD
+
+
+#### CRUD Warts
+
+###### The Cascading Delete Cycle Issue
+
+I made the decision to not support deletion of teams from the web interface. The way I understand it is this: leaving it in was causing a cascading delete cycle: Deleting a team deletes all it's skaters (reasonable), and deletes all it's jams (also reasonable). Deleting either a skater or a jam should delete any associated skaterJams (also, also reasonable). But having a skaterJam deletable from two different directions causes SQL to refuse to play ball with the whole sequence of cascading deletes.
+
+To break the cycle, I tried to move the automatic deletions from SQL Server into the C# code's deletion method. I disabled cascading deletes for teams to jams and skaters, and did it in code. I was getting all kinds of complaints about trashing lists as I was iterating through them, null pointer exceptions, and whatnot. In the interest of time I decided to fall back to removing deletion of teams from the web interface. So Teams don't have full web CRUD. They just have 'CRU'. 
+
+###### Jams
+SkateJams are created implicitly via the web interface for creating Jams. I barely had time to make this interface work. It uses a ugly multiple-select list box. The original plan was to have a pretty grid of buttons representing players, but I ran out of time. I also didn't have time to support update of Jams, which isn't terrible - they can be 'updated' through delete-then-create, but I think it's worth mentioning. 
+
+###### Lack of Polished CRUD
+In general the views are not polished or pretty. They're proof-of-concept that the database works. Since massaging CSS is grunt work for me at this point, but learning a new MVC framework is uncertain and difficult, I prioritized the scary and hard thing. Thus stuff I'm actually good at remains undone, and stuff that was hard barely works.
+
+
+#### ViewBags and ViewModels
