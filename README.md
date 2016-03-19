@@ -6,11 +6,11 @@ a class project for [&lt;Code Louisville&gt;](http://www.codelouisville.org/)
 
 Like Basketball, Roller derby is team sport with two teams of five players each. Unlike most team games, both teams are simultaneously playing offense and defense. The game is played on an oval track. Player are referred to as 'skaters'. One special skater for each team is the 'jammer', and she scores points by lapping members of the opposing team. Various rules conspire to keep non-jammer skaters - called 'blockers' - from moving as fast as the jammers, so the game becomes a full-contact sport rather than a speed skating race. 
 
-Games are subdivided into 'jams' (like 'plays' in football). Typically, each skater substitutes out at the end of every jam.  Simply recording who is in play is a full-time job for two different officials - one keeps track of each team's fielded skaters. 
+Games are subdivided into 'jams', similar to 'plays' in football. Typically, each skater substitutes out at the end of every jam.  Simply recording who is in play is a full-time job for two different officials - one keeps track of each team's fielded skaters. 
 
 ## Introducing jamboard
 
-Jamboard is proof-of-concept for a web-and-tablet-based, multi-headed, real time skater tracking system. Unlike most projects, it's intended to run on an intranet, with a database with less than 1000 rows total. Arguably, it should instead have been a server of _not_-http, just sitting on some port listening for tcp connections, reading configuration files and grinding out log files as output, with the UI done by a few mobile apps. That would certainly be more performant. But hey, http / html is very portable, and nobody hires people to write that kind of application anymore, and there's no class in it I need to pass, so the http / html architecture is defensible. :)
+Jamboard is proof-of-concept for a web-and-tablet-based, multi-headed, real time skater tracking system. Unlike most projects, it's intended to run on an intranet, with a database with less than 1000 rows total. 
 
 <img src="screenshots/Home-Index.PNG" alt="" />
 
@@ -147,6 +147,6 @@ I've learned the jamboard approach will work to solve this problem.
 
 I've also learned that with my current skill set and my life obligations, I won't have time to make this into a legitimately useful OSS project in 2016. This makes me sad, but I am proud to have brought the project to some form of completion. 
 
-## Installing Development Environment
+## How to Install the Development Environment
 
 I believe the installation procedure is to check out the project through Visual Stuidio / Github, then maybe edit the cocnnection string in Web.config, create a new database named `jamboard`, then from the Tools > NuGet Package Manager > Package Manager Console execute the command `Update-Database`. You may also need to get some other dependent packages, such as Entity-Framework, SignalR, AngularJS, and so on, but hopefully those error messages should be straightforward. Once that's sorted out, click the 'build project' button and browse away. 
